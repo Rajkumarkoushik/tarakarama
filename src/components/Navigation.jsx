@@ -5,7 +5,8 @@ import { CiHeart } from "react-icons/ci";
 import { FaCircleUser } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-function Navigation({ searchTerm, setSearchTerm, size }) {
+function Navigation({ size, wishSize, searchTerm, setSearchTerm }) {
+
   return (
     <>
       <nav className="navigation-main py-2">
@@ -32,7 +33,7 @@ function Navigation({ searchTerm, setSearchTerm, size }) {
               </div>
               <div className="position-relative">
                 <Link to="/Wish"><CiHeart /></Link>
-                <span>{size}</span>
+                <span>{wishSize}</span>
               </div>
               <div className="position-relative">
                 <FaCircleUser />
@@ -40,7 +41,8 @@ function Navigation({ searchTerm, setSearchTerm, size }) {
             </div>
           </div>
         </section>
-          </nav>
+      </nav>
+    
     </>
   );
 }

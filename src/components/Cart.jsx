@@ -1,8 +1,14 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { FaXmark } from "react-icons/fa6";
+import { BsCurrencyRupee } from "react-icons/bs";
 
-function Cart({ cartItems, setCartItems }) {
+function Cart({ cartItems, setCartItems, totalCartPrice }) {
+
+   // Save cart items to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
   
   const [removeItems, setRemoveItems] = useState(false);
 
@@ -40,7 +46,7 @@ function Cart({ cartItems, setCartItems }) {
             <h6>
               <Link to="/">Home</Link> / Cart
             </h6>
-            <h3 className="text-center py-4">Your Cart</h3>
+            <h3 className="text-center py-2">Your Cart</h3>
           </div>
         </div>
       </section>
@@ -49,10 +55,11 @@ function Cart({ cartItems, setCartItems }) {
         <div className="container">
           <div>
               {cartItems.length === 0 ? ( <div className="text-center shop-cart">
-              <img src="/assets/images/shoppingbag/shopping-bag.svg" alt="Shopping Bag Pic" />
-              <h6>There is no items in the cart, please shop.</h6>
+              <img src="/assets/images/shoppingbag/empty-cart.png" alt="Shopping Bag Pic" />
+              <h4>Missing Cart items?</h4>
               </div>) : 
-                 (            <table className="cart-table">
+              (<>
+                <table className="cart-table">
                  <thead className="py-4">
                    <tr>
                      <th>Product</th>
@@ -79,7 +86,7 @@ function Cart({ cartItems, setCartItems }) {
                               <button onClick={() => increment(item)}>+</button>
                             </div>
                           </td>
-                          <td></td>
+                          <td>{item.quantity * parseInt(INR, 0)}</td>
                           <td>
                             <FaXmark onClick={() => removeCartItems(item)}/>
                           </td>
@@ -89,6 +96,31 @@ function Cart({ cartItems, setCartItems }) {
                     })  
 }
                 </table>
+                
+                <section className="py-4">
+                  <div className="container">
+                    <div className="cart-details p-4">
+                      <h6>Price Details ({cartItems.length} Items)</h6>
+                      <div>
+                      <p>Total MRP :- <span><BsCurrencyRupee />{totalCartPrice}/-</span></p>
+                        <p>Shipping FEE :- {}</p>
+                      </div>
+                      <div>
+                        <h6>
+                          Total Amount :-
+                          <span>
+                            <BsCurrencyRupee />
+                            {totalCartPrice}/-
+                          </span>
+                        </h6>
+                        <button className="button">
+                          <Link to="/address">PLACE ORDER</Link>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </>
                 )
             }
           </div>

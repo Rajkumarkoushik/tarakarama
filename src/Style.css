@@ -6,11 +6,16 @@
 
 a {
     text-decoration: none !important;
+    font-size: 14px;
+}
+p{
+    font-size: 14px;
+    color: #6f6060;
 }
 
 li {
     list-style: none;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--main-color-);
     padding: 5px 0px;
@@ -22,6 +27,20 @@ li:hover {
     transition: var(--transition-);
     border-bottom: 1px solid #fff;
     width: 100%;
+}
+
+.button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--main-color-);
+    border: none;
+    color: var(--second-color-);
+
+    &:hover {
+        background: var(--second-color-);
+        color: var(--main-color-);
+    }
 }
 
 /* Storing variables */
@@ -36,6 +55,7 @@ li:hover {
    2. Cart.
    3. Footer.
    4. Home Items.
+   5. Address section.
 */
 
 /* 1. Navigation starts. */
@@ -81,6 +101,13 @@ li:hover {
         right: 0px;
         font-size: 12px;
     }
+}
+.slide-images img{
+    width: 100%;
+    height: 40vh;
+}
+.carousel-indicators [data-bs-target]{
+    display: none;
 }
 
 /* 1. Navigation ends. */
@@ -146,7 +173,27 @@ li:hover {
         padding: 10px 0px;
     }
 }
-
+.cart-details{
+    border: 1px solid var(--second-color-);
+    width: 35%;
+    height: 45vh;
+    h6{
+        color: var(--main-color-);
+    }
+    button{
+        display: block;
+    margin: 50px auto;
+    }
+    span{
+        color: var(--second-color-);
+    }
+}
+.my-wish{
+    color: var(--main-color-);
+    span{
+        color: var(--second-color-);
+    }
+}
 /* 2. Cart ends. */
 
 /* 3. Footer section starts. */
@@ -179,7 +226,7 @@ li:hover {
 
 /* 4. Home Items section starts. */
 .items-main {
-    background-color: rgb(245, 245, 245);
+    /* background-color: rgb(245, 245, 245); */
 
     .items {
         box-shadow: var(--box-shadow-);
@@ -190,19 +237,22 @@ li:hover {
             height: 30vh;
         }
 
-        button {
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            background: var(--main-color-);
-            border: none;
-            color: var(--second-color-);
-
-            &:hover {
-                background: var(--second-color-);
-                color: var(--main-color-);
-            }
+        .items-heart{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgb(253, 9, 9);
+            font-size: 25px;
+            cursor: pointer;
         }
+    }
+    .wish-remove{
+            color: var(--main-color-);
+            font-size: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
     }
 }
 .shop-cart{
@@ -212,3 +262,86 @@ li:hover {
 }
 
 /* 4. Home Items section ends. */
+
+/* 5. Address section starts. */
+.modal-main{
+    padding-left: 0px;
+    .form-control{
+        margin: 10px 0px;
+        font-size: 12px;
+        font-weight: 600;
+        height: 45px;
+    }
+    .modal-title {
+        font-size: 16px;
+    }
+    .form-label {
+        font-size: 14px;
+        font-weight: 600;
+    }   
+    .form-control:focus {
+    border-color: var(--main-color-);
+    outline: 0;
+    box-shadow: var(--box-shadow-); 
+    }
+    .modal-body {
+    height: 50vh;
+    overflow-y: scroll;
+}
+.form-state{
+    gap: 20px;
+}
+}
+.address-items{
+    border-bottom: 1px dashed #d7d5d5;
+    padding: 10px 0px;
+    img{
+        width: 45px;
+        height: 50px;
+    }
+    p{
+        font-size: 12px;
+        font-weight: 600;
+    
+    }
+
+}
+.address-estimation{
+    border-left: 1px solid #d7d5d5;
+    border-top: 1px solid #d7d5d5;
+    padding: 20px 10px;
+}
+.address-card{
+    border: 1px solid #d7d5d5; 
+    border-radius: 5px;
+    transition: var(--transition-);
+    &:hover{
+        box-shadow: var(--box-shadow-);
+        transition: var(--transition-);
+    }
+}
+/* 5. Address section ends. */
+
+
+
+@media(max-width: 767px){
+    .nav-input{
+        display: none;
+    }
+    .cart-details {
+        width: 100%;
+        height: auto;
+    }
+    .cart-main {
+        & .table-data {
+            .table-quantity {
+                width: 100%;
+            }
+        }
+    }
+    .modal-main{
+        .modal-body {
+            height: auto;
+        }
+    }
+}
